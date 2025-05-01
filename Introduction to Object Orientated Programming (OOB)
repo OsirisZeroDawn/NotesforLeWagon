@@ -1,0 +1,219 @@
+
+my_car = car.new
+
+our_car = Car.new
+
+#Constructor
+
+car.new #=> Instantiates the class, then calls the method 'initialize'
+
+class Car
+  def initialize
+  end
+end
+
+
+#Instance variable - Data
+
+class Car
+  def initialize
+    @engine_started = false
+  end
+end
+
+
+#Instance methods - Behavior 1/2
+
+class Car
+  def initialize
+    @engine_started = false
+  end
+
+
+  def engine_started?
+    return @engine_started
+  end
+end
+
+
+
+my_car = car.new
+my_car.engine_started?
+# => false
+
+
+
+#Instance methods - Behavior 2/2
+
+class car
+  def intialize
+    @engine_started = false
+  end
+
+  def engine_started?
+    return @engine_started
+  end
+
+  def start_engine
+    @engine_started = true
+  end
+end
+
+my_car = Car.new
+my_car.engine_started #=> false
+my_car.start_engine
+my_car.engine_started #=> true
+
+
+
+#Setting and Accessing state
+
+
+class Car
+  def initialize(color)
+    @color = color
+  end
+end
+
+red_card = Car.new("red")
+green_card = Card.new("green")
+
+
+#Explicit Reader
+
+class Car
+  def initialize(color)
+    @color = color
+  end
+
+  def color
+    return @color
+  end
+end
+
+
+
+red_card = Car.new("red")
+puts red_car.color
+# => "red"
+
+
+
+#attr_reader
+#attrribute reader....
+
+class Car
+  def color
+    return @color
+  end
+end
+
+#this is equivalent to
+
+class Car
+  attr_reader :color
+end
+
+
+#attr_reader conveninet shortcut
+
+class Car
+  def color
+    return @color
+  end
+
+  def brand
+    return @brand
+  end
+end
+
+#this is equivalent to
+
+class Car
+  attr_reader :color, :brand
+end
+
+
+
+#Explicit writer
+
+class Car
+  attr_reader :color
+
+  def intialize(color)
+    @color = color
+  end
+
+  def color=(new_color)
+    @color = new_color
+  end
+end
+
+#Ruby
+
+my_car = Car.new("red")
+my_car.color
+#=> "red"
+my_car.color = "green" #(same as) my_color=("green")
+my_car.color
+#=
+
+
+#Attribute Writer
+
+#Again there is a shortcut method
+
+class Car
+  attr_writer :color
+
+  def initialize(color)
+    @color = color
+  end
+end
+
+my_car = car.new ("red")
+my_car.color = "green" #car color has been updated
+
+
+#attr_accessor
+
+attr_reader + attr_writer = attr_accessor
+
+class Car
+  attr_accessor :color # Can you read and write the color property
+end
+
+my_car = Car.new
+my_car.color = "red"
+my_car.color
+# => "red"
+
+
+
+#Interface
+
+#Public Interface
+#A contract with the external world
+
+class Car
+  def start_engine
+  end
+end
+
+#Private Interface
+
+class Car
+    def start_engine
+      start_fuel_pump
+      init_spark_plug
+    end
+
+  private
+
+  def start_fuel_pump
+  end
+
+  def init_spark_plug
+  end
+end
+#the external world does not know about both private methods...
